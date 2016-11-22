@@ -1,5 +1,9 @@
 FROM nginx:stable-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY insecure-cert.pem /etc/nginx/insecure-cert.pem
-COPY index.html /usr/share/nginx/html/index.html
+COPY startup.sh /etc/nginx/startup.sh
+
+RUN chmod 777 /etc/nginx/startup.sh
+
+ENTRYPOINT [ "/etc/nginx/startup.sh" ]
+
